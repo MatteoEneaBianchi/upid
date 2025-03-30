@@ -1,0 +1,33 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets" # Folder where user uploaded files should go
+public_folder: "assets"
+
+collections:
+  - name: "post"  # Usato nei percorsi, es.: /admin/collections/:slug/edit
+    label: "Post"  # Usato nell'interfaccia utente, es.: "Nuovo Post"
+    folder: "_post"  # Percorso della cartella in cui sono memorizzati i documenti
+    format: "{{year}}-{{month}}-{{day}}-{{slug}}.md"  # Formato del nome file per ogni post
+    create: true  # Consente agli utenti di creare nuovi documenti in questa collezione
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Language", name: "lang", widget: "string", default: "it"}
+      - {label: "Reference", name: "ref", widget: "string"}
+      - {label: "Categories", name: "categories", widget: "list", default: ["categoria1"]}
+      - {label: "Tags", name: "tags", widget: "list", default: ["tag1", "tag2", "tag3"]}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Author", name: "Author", widget: "string", required: true}
+      - {label: "Intro Blurb", name: "description", widget: "text"}
+      - {label: "Image", name: "image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "Page" # Used in routes, ie.: /admin/collections/:slug/edit
+    label: "Page" # Used in the UI, ie.: "New Post"
+    folder: "site/content/" # The path to the folder where the documents are stored
+    path: "{{slug}}/index" # Each document is inside a folder with the slug name.
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields each document in this collection have
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
