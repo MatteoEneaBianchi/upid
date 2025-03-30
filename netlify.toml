@@ -10,11 +10,5 @@
    command = "yarn build:preview"
  
  [dev]
-   framework = "hugo"
+   framework = "jekyll"
    targetPort = 3000
- 
- [[plugins]]
-   package = "netlify-plugin-cypress"
- 
-   [plugins.inputs]
-     record = true
